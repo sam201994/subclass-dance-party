@@ -1,5 +1,29 @@
 $(document).ready(function() {
   window.dancers = [];
+  window.marioDancers=[];
+  window.bunnyDancers=[];
+  window.mikeyDancers=[];
+
+  //play music on load
+  
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', 'images/Dice MediaSong For Survival ft. Mithila PalkarLittle Things Soundtrack.mp3');
+    audioElement.setAttribute('autoplay', 'autoplay');
+    //audioElement.load()
+    $.get();
+    audioElement.addEventListener("load", function() {
+      audioElement.play();
+    }, true);
+
+    $('.play').click(function() {
+      audioElement.play();
+    });
+
+    $('.pause').click(function() {
+      audioElement.pause();
+    });
+//--------------------
+
 
   $('.addDancerButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
@@ -20,14 +44,49 @@ $(document).ready(function() {
     // get the maker function for the kind of dancer we're supposed to make
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
-    // make a dancer with a random position
-
+   
+    if(dancerMakerFunctionName==='makeBlinkyDancer'){
     var dancer = new dancerMakerFunction(
+        $("body").height() * Math.random(),
+        $("body").width() * Math.random(),
+        3000
+      );
+
+    }
+    else{
+      var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
-      Math.random() * 1000
+      500
     );
-    $('body').append(dancer.$node);
+  
+    window.dancers.push(dancer);
+  }
+   
+  $('body').append(dancer.$node);
   });
+
+
+
+  $('.lineUpButton').on('click', function(){
+    for (var i=0; i<window.dancers.length; i++){
+      var allDancers = window.dancers[i];
+      var k=(i*90)+100;
+      allDancers.setPosition(400,k);
+    }
+  });
+
+
+  $('.interact').on('click', function() {
+  for (var i = 0; i < window.dancers.length; i++){
+      var allDancers = window.dancers[i];
+      var left = allDancers.left;
+      var top = allDancers.top;
+     allDancers.setPosition(top+1, left+1);
+    }
+
+  });
+
+
 });
 

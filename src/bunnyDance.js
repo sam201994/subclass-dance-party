@@ -1,4 +1,4 @@
-// var makeBlinkyDancer = function(top, left, timeBetweenSteps) {
+// var bunny = function(top, left, timeBetweenSteps) {
 //   var blinkyDancer = makeDancer(top, left, timeBetweenSteps);
 
 //   // we plan to overwrite the step function below, but we still want the superclass step behavior to work,
@@ -12,23 +12,23 @@
 //     // toggle() is a jQuery method to show/hide the <span> tag.
 //     // See http://api.jquery.com/category/effects/ for this and
 //     // other effects you can use on a jQuery-wrapped html tag.
-//     makeBlinkyDancerDancer.$node.toggle();
+//     bunnyDancer.$node.toggle();
 //   };                       
 
 //   return blinkyDancer;
 // };
 
 
-var makeBlinkyDancer = function(top, left, timeBetweenSteps){
+var bunny = function(top, left, timeBetweenSteps){
   makeDancer.call(this, top, left, timeBetweenSteps);
-  this.$node.addClass("blinkyDancer")
+   this.$node.addClass("bunny");
 };
 
- makeBlinkyDancer.prototype = Object.create(makeDancer.prototype);
- makeBlinkyDancer.prototype.constructor =  makeBlinkyDancer;
+ bunny.prototype = Object.create(makeDancer.prototype);
+ bunny.prototype.constructor =  bunny;
 
- makeBlinkyDancer.prototype.step = function(){
+ bunny.prototype.step = function(){
 
  makeDancer.prototype.step.call(this);
-  this.$node.toggle();
+ this.$node.toggle();
 };
